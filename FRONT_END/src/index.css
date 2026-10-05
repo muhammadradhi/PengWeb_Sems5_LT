@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+@theme {
+  /* Brand Colors */
+  --color-primary: #187cff;
+  --color-secondary: #fdfdfd;
+  --color-tertiary: #f68048;
+
+  /* Font Colors */
+  --color-font-1: #1b1c18;
+  --color-font-2: #5e5e5c;
+
+  /* Semantic Colors */
+  --color-success: #19432d;
+}

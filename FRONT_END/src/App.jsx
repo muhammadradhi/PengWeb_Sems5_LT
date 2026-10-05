@@ -1,9 +1,7 @@
-import "./App.css";
-
 function App() {
   return (
-    <div className="min-h-screen bg-blue-100 flex items-center justify-center">
-      <h1 className="text-4xl font-bold text-blue-600">Tailwind berhasil!</h1>
+    <div className="flex min-h-screen items-center justify-center bg-primary">
+      <h1 className="text-5xl font-bold text-secondary">Tailwind Berhasil!</h1>
     </div>
   );
 }
