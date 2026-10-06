@@ -1,14 +1,11 @@
-import Navbar from "../Components/Navbar.jsx";
-import HeroLandingPage from "../Components/Hero.jsx";
+import LandingPageLayout from "../Layouts/LandingPageLayout";
+import HeroLandingPage from "../Components/Hero";
+
 function LandingPage() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-
-      <main className="flex flex-1">
-        <HeroLandingPage />
-      </main>
-    </div>
+    <LandingPageLayout>
+      <HeroLandingPage />
+    </LandingPageLayout>
   );
 }
 

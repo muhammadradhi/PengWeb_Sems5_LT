@@ -2,6 +2,7 @@ const Button = ({ props }) => {
   const buttonStyle = {
     primary: "bg-primary text-white border border-primary",
     secondary: "bg-transparent text-black border border-black",
+    login: "bg-primary text-white border border-primary w-full",
   };
 
   return (
