@@ -5,6 +5,8 @@ const Button = ({ props }) => {
     primary: "bg-primary text-white border border-primary",
     secondary: "bg-transparent text-black border border-black",
     login: "bg-primary text-white border border-primary w-full",
+    primaryLogin:
+      "bg-primary text-white border border-primary w-full flex items-center justify-center",
   };
 
   return (
