@@ -1,8 +1,18 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import LandingPage from "./Pages/LandingPage";
+import LoginPage from "./Pages/LoginPage";
+import RegisterPage from "./Pages/RegisterPage";
+
 function App() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-primary">
-      <h1 className="text-5xl font-bold text-secondary">Tailwind Berhasil!</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
