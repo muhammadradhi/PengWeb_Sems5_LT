@@ -5,7 +5,6 @@ const Input = ({ props, className }) => {
         htmlFor={props.id}
         className="font-semibold text-base mb-2.5 tracking-wider"
       >
-        C1C8C1
         {props.text}
       </label>
       <input

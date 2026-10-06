@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
 @import "tailwindcss";
 
 @theme {
@@ -9,7 +11,37 @@
   /* Font Colors */
   --color-font-1: #1b1c18;
   --color-font-2: #5e5e5c;
+  --color-font-3: #414943;
 
   /* Semantic Colors */
   --color-success: #19432d;
+
+  /* Typhography */
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+
+  /* =========================
+     SHADOW
+     ========================= */
+
+  /* Small elements: input, button, small card */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
+
+  /* Default card / component */
+  --shadow-md: 0 2px 6px rgba(0, 0, 0, 0.04), 0 6px 16px rgba(0, 0, 0, 0.06);
+
+  /* Elevated card */
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.04), 0 12px 28px rgba(0, 0, 0, 0.08);
+
+  /* Dropdown / popover */
+  --shadow-xl: 0 8px 20px rgba(0, 0, 0, 0.06), 0 20px 40px rgba(0, 0, 0, 0.1);
+
+  /* Modal / dialog */
+  --shadow-2xl:
+    0 12px 32px rgba(0, 0, 0, 0.08), 0 24px 64px rgba(0, 0, 0, 0.12);
+
+  --shadow-navbar: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
