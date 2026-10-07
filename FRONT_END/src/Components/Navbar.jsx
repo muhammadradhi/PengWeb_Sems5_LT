@@ -14,6 +14,14 @@ const Navbar = ({ showLogin = true }) => {
           </Link>
         </div>
       )}
+
+      {!showLogin && (
+        <div className="flex gap-4 text-font-2">
+          <Link to="/register" className="font-medium hover:underline">
+            Daftar
+          </Link>
+        </div>
+      )}
     </nav>
   );
 };
