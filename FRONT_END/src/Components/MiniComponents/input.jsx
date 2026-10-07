@@ -1,9 +1,9 @@
-const Input = ({ props, className }) => {
+const Input = ({ props, className, classNameLabel }) => {
   return (
     <div className={`flex flex-col gap-2 mb-4 ${className}`}>
       <label
         htmlFor={props.id}
-        className="font-semibold text-base mb-2.5 tracking-wider"
+        className={`font-semibold text-base mb-2.5 tracking-wider ${classNameLabel}`}
       >
         {props.text}
       </label>
