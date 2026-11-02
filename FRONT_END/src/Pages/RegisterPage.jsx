@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import momoMasak from "../assets/momo masak.png";
+import AuthNavbar from "../components/AuthNavbar";
 
 const RegisterPage = () => {
   const categories = [
@@ -13,19 +14,7 @@ const RegisterPage = () => {
   return (
     <div className="min-h-screen bg-gray-50 pb-10 text-gray-800">
       {/* Navbar */}
-      <header className="flex h-16 items-center border-b border-gray-200 bg-white px-5 sm:px-12">
-        <Link to="/" className="flex items-center gap-2.5">
-          <span className="text-xl font-bold tracking-tight text-[#111111]">
-            Warung
-          </span>
-
-          <span className="text-base text-gray-300">|</span>
-
-          <span className="text-xs font-semibold tracking-wide text-gray-500">
-            UMKM
-          </span>
-        </Link>
-      </header>
+      <AuthNavbar />
 
       {/* Main Container */}
       <main className="flex justify-center px-4 py-8 sm:px-6">

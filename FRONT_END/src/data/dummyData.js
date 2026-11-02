@@ -1,0 +1,80 @@
+// Data sementara sebelum frontend tersambung ke backend/API (Pekan 11).
+
+// Menu dengan stok 0 dianggap Habis dan tidak dapat dipesan.
+export const daftarMenu = [
+  {
+    id: 1,
+    nama: "Ayam Goreng Serundeng",
+    kategori: "Makanan Utama",
+    harga: 15000,
+    deskripsi: "Ayam kampung empuk dengan bumbu rempah kelapa gurih.",
+    stok: 6,
+    stokAwal: 10,
+  },
+  {
+    id: 2,
+    nama: "Mie Goreng Spesial Telur",
+    kategori: "Makanan Utama",
+    harga: 12000,
+    deskripsi: "Mie goreng bumbu kecap dengan telur mata sapi dan sayur.",
+    stok: 0,
+    stokAwal: 10,
+  },
+  {
+    id: 3,
+    nama: "Es Teh Manis Segar",
+    kategori: "Minuman",
+    harga: 5000,
+    deskripsi: "Teh seduh wangi melati dengan gula asli dan es batu melimpah.",
+    stok: 15,
+    stokAwal: 20,
+  },
+  {
+    id: 4,
+    nama: "Kopi Susu Gula Aren",
+    kategori: "Minuman",
+    harga: 10000,
+    deskripsi: "Espresso robusta dengan kental manis dan gula aren murni.",
+    stok: 2,
+    stokAwal: 15,
+  },
+];
+
+export const pesananAwal = [
+  {
+    id: 1,
+    namaPelanggan: "Rina Marlina",
+    menu: "Ayam Goreng Serundeng",
+    harga: 15000,
+    jumlah: 2,
+    catatan: "Satu bagian paha",
+    alamat: "Jl. Kenanga No. 8, RT 03/RW 05, Sukajadi",
+    metodePembayaran: "QRIS",
+    status: "Dimasak",
+    waktu: "10.15",
+  },
+  {
+    id: 2,
+    namaPelanggan: "Andi Pratama",
+    menu: "Kopi Susu Gula Aren",
+    harga: 10000,
+    jumlah: 1,
+    catatan: "Es sedikit",
+    alamat: "Kos Melati Kamar 12, Jl. Cempaka Putih",
+    metodePembayaran: "Cash",
+    status: "OTW",
+    waktu: "09.48",
+  },
+  {
+    id: 3,
+    namaPelanggan: "Siti Nurhaliza",
+    menu: "Es Teh Manis Segar",
+    harga: 5000,
+    jumlah: 3,
+    catatan: "",
+    alamat: "Perum Griya Asri Blok C2 No. 4",
+    metodePembayaran: "Cash",
+    status: "Selesai",
+    waktu: "09.10",
+  },
+];

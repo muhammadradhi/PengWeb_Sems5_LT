@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import AuthNavbar from "../components/AuthNavbar";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -8,19 +9,7 @@ const LoginPage = () => {
   return (
     <div className="flex min-h-screen flex-col bg-gray-50 text-gray-800">
       {/* Navbar */}
-      <header className="flex h-16 items-center border-b border-gray-200 bg-white px-5 sm:px-12">
-        <Link to="/" className="flex items-center gap-2.5">
-          <span className="text-xl font-bold tracking-tight text-[#111111]">
-            Warung
-          </span>
-
-          <span className="text-base text-gray-300">|</span>
-
-          <span className="text-xs font-semibold tracking-wide text-gray-500">
-            UMKM
-          </span>
-        </Link>
-      </header>
+      <AuthNavbar />
 
       {/* Login Container */}
       <main className="flex flex-1 items-center justify-center px-5 py-10">
