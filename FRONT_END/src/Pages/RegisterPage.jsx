@@ -1,7 +1,21 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import momoMasak from "../assets/momo masak.png";
+import FormInput from "../Components/Molecules/FormInput";
+import Button from "../Components/Atoms/Button";
+import RegisterPromo from "../Components/Organisms/RegisterPromo";
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
+
+  const [namaOwner, setNamaOwner] = useState("");
+  const [email, setEmail] = useState("");
+  const [namaWarung, setNamaWarung] = useState("");
+  const [kategori, setKategori] = useState("");
+  const [alamat, setAlamat] = useState("");
+  const [password, setPassword] = useState("");
+  const [konfirmasiPassword, setKonfirmasiPassword] = useState("");
+
   const categories = [
     { value: "warteg", label: "Warteg / RM" },
     { value: "coffee-shop", label: "Coffee Shop" },
@@ -9,6 +23,22 @@ const RegisterPage = () => {
     { value: "minuman", label: "Minuman" },
     { value: "jajanan", label: "Jajanan / Camilan" },
   ];
+
+  const statistik = [
+    { angka: "30+", label: "Pengguna Terdaftar" },
+    { angka: "100+", label: "Resep Tersedia" },
+  ];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (password !== konfirmasiPassword) {
+      alert("Konfirmasi kata sandi tidak sama");
+      return;
+    }
+
+    navigate("/login");
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 pb-10 text-gray-800">
@@ -48,7 +78,7 @@ const RegisterPage = () => {
                 </p>
               </div>
 
-              <form>
+              <form onSubmit={handleSubmit}>
                 {/* Informasi Pemilik */}
                 <fieldset className="mb-6">
                   <legend className="mb-4 w-full border-b border-gray-100 pb-3 text-xs font-bold tracking-wide text-gray-900">
@@ -56,37 +86,23 @@ const RegisterPage = () => {
                     1. INFORMASI PEMILIK
                   </legend>
 
-                  <div className="mb-4">
-                    <label
-                      htmlFor="owner-name"
-                      className="mb-2 block text-[11px] font-bold tracking-wide text-gray-900"
-                    >
-                      NAMA LENGKAP OWNER
-                    </label>
+                  <FormInput
+                    label="NAMA LENGKAP OWNER"
+                    id="owner-name"
+                    type="text"
+                    value={namaOwner}
+                    onChange={(e) => setNamaOwner(e.target.value)}
+                    placeholder="Budi Santoso"
+                  />
 
-                    <input
-                      type="text"
-                      id="owner-name"
-                      placeholder="Budi Santoso"
-                      className="w-full rounded-md border border-gray-300 px-3.5 py-3 text-sm outline-none transition placeholder:text-gray-400 focus:border-blue-600"
-                    />
-                  </div>
-
-                  <div className="mb-4">
-                    <label
-                      htmlFor="business-email"
-                      className="mb-2 block text-[11px] font-bold tracking-wide text-gray-900"
-                    >
-                      EMAIL BISNIS
-                    </label>
-
-                    <input
-                      type="email"
-                      id="business-email"
-                      placeholder="budi@warungpadang.com"
-                      className="w-full rounded-md border border-gray-300 px-3.5 py-3 text-sm outline-none transition placeholder:text-gray-400 focus:border-blue-600"
-                    />
-                  </div>
+                  <FormInput
+                    label="EMAIL BISNIS"
+                    id="business-email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="budi@warungpadang.com"
+                  />
                 </fieldset>
 
                 {/* Detail Bisnis */}
@@ -96,27 +112,20 @@ const RegisterPage = () => {
                     2. DETAIL BISNIS / WARUNG
                   </legend>
 
-                  <div className="mb-4">
-                    <label
-                      htmlFor="store-name"
-                      className="mb-2 block text-[11px] font-bold tracking-wide text-gray-900"
-                    >
-                      NAMA BISNIS / WARUNG
-                    </label>
-
-                    <input
-                      type="text"
-                      id="store-name"
-                      placeholder="Contoh: Warung Bu Dhiesna"
-                      className="w-full rounded-md border border-gray-300 px-3.5 py-3 text-sm outline-none transition placeholder:text-gray-400 focus:border-blue-600"
-                    />
-                  </div>
+                  <FormInput
+                    label="NAMA BISNIS / WARUNG"
+                    id="store-name"
+                    type="text"
+                    value={namaWarung}
+                    onChange={(e) => setNamaWarung(e.target.value)}
+                    placeholder="Contoh: Warung Bu Dhiesna"
+                  />
 
                   <div className="mb-4">
                     <div className="mb-2 flex items-center justify-between">
                       <label
                         htmlFor="business-category"
-                        className="text-[11px] font-bold tracking-wide text-gray-900"
+                        className="text-xs font-bold tracking-wide text-gray-900"
                       >
                         KATEGORI / JENIS BISNIS
                       </label>
@@ -128,7 +137,9 @@ const RegisterPage = () => {
 
                     <select
                       id="business-category"
-                      defaultValue=""
+                      value={kategori}
+                      onChange={(e) => setKategori(e.target.value)}
+                      required
                       className="w-full rounded-md border border-gray-300 bg-white px-3.5 py-3 text-sm outline-none focus:border-blue-600"
                     >
                       <option value="">-- Pilih Kategori Usaha --</option>
@@ -150,7 +161,7 @@ const RegisterPage = () => {
                   <div className="mb-4">
                     <label
                       htmlFor="store-address"
-                      className="mb-2 block text-[11px] font-bold tracking-wide text-gray-900"
+                      className="mb-2 block text-xs font-bold tracking-wide text-gray-900"
                     >
                       ALAMAT LENGKAP BISNIS
                     </label>
@@ -159,12 +170,15 @@ const RegisterPage = () => {
                       id="store-address"
                       rows={3}
                       maxLength={200}
+                      value={alamat}
+                      onChange={(e) => setAlamat(e.target.value)}
                       placeholder="Jl. Melati No. 12, Kel. Menteng, Jakarta Pusat"
+                      required
                       className="w-full resize-y rounded-md border border-gray-300 px-3.5 py-3 text-sm outline-none transition placeholder:text-gray-400 focus:border-blue-600"
                     />
 
                     <p className="mt-1 text-right text-[11px] text-gray-400">
-                      Maksimal 200 karakter
+                      {alamat.length}/200 karakter
                     </p>
                   </div>
                 </fieldset>
@@ -176,49 +190,28 @@ const RegisterPage = () => {
                     3. KEAMANAN AKUN
                   </legend>
 
-                  {/* Password */}
-                  <div className="mb-5">
-                    <div className="mb-2 flex items-center justify-between">
-                      <label
-                        htmlFor="password"
-                        className="text-[11px] font-bold tracking-wide text-gray-900"
-                      >
-                        KATA SANDI
-                      </label>
+                  <FormInput
+                    label="KATA SANDI"
+                    hint="Min. 8 karakter"
+                    id="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Minimal 8 karakter"
+                  />
 
-                      <span className="text-xs text-gray-500">
-                        Min. 8 karakter
-                      </span>
-                    </div>
+                  <FormInput
+                    label="KONFIRMASI KATA SANDI"
+                    id="confirm-password"
+                    type="password"
+                    value={konfirmasiPassword}
+                    onChange={(e) => setKonfirmasiPassword(e.target.value)}
+                    placeholder="Ulangi kata sandi"
+                  />
 
-                    <input
-                      type="password"
-                      id="password"
-                      placeholder="Minimal 8 karakter"
-                      className="w-full rounded-md border border-gray-300 px-3.5 py-3 text-sm outline-none transition placeholder:text-gray-400 focus:border-blue-600"
-                    />
-                  </div>
-
-                  {/* Confirm Password */}
-                  <div className="mb-4">
-                    <label
-                      htmlFor="confirm-password"
-                      className="mb-2 block text-[11px] font-bold tracking-wide text-gray-900"
-                    >
-                      KONFIRMASI KATA SANDI
-                    </label>
-
-                    <input
-                      type="password"
-                      id="confirm-password"
-                      placeholder="Ulangi kata sandi"
-                      className="w-full rounded-md border border-gray-300 px-3.5 py-3 text-sm outline-none transition placeholder:text-gray-400 focus:border-blue-600"
-                    />
-
-                    <p className="mt-2 text-xs leading-relaxed text-gray-500">
-                      ⓘ Pastikan kata sandi cocok dan mudah diingat.
-                    </p>
-                  </div>
+                  <p className="text-xs leading-relaxed text-gray-500">
+                    ⓘ Pastikan kata sandi cocok dan mudah diingat.
+                  </p>
                 </fieldset>
 
                 {/* Terms */}
@@ -228,12 +221,9 @@ const RegisterPage = () => {
                 </p>
 
                 {/* Submit */}
-                <Link
-                  to="/login"
-                  className="flex w-full items-center justify-center gap-2 rounded-md bg-[#1d70f5] px-3 py-3 text-[15px] font-semibold text-white transition hover:bg-[#1a5ecf]"
-                >
+                <Button type="submit" className="w-full py-3 text-[15px]">
                   Daftar Akun & Bisnis Baru <span>→</span>
-                </Link>
+                </Button>
 
                 <div className="relative my-6 text-center">
                   <div className="absolute top-1/2 w-full border-t border-gray-100" />
@@ -255,61 +245,12 @@ const RegisterPage = () => {
               </form>
             </section>
 
-            {/* Promo Sidebar */}
-            <aside className="rounded-xl border border-gray-200 bg-white p-4 text-center">
-              <img
-                src={momoMasak}
-                alt="Momo Cooking"
-                className="mb-4 h-64 w-full rounded-lg object-cover"
-              />
-
-              <span className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1.5 text-[10px] font-bold tracking-wide text-blue-600">
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <rect x="2" y="3" width="20" height="14" rx="2" />
-                  <path d="M8 21h8M12 17v4" />
-                </svg>
-                KELOLA WARUNG MANDIRI
-              </span>
-
-              <h2 className="mb-2 text-base font-bold leading-snug text-gray-900">
-                Kelola Pesanan & Kasir Lebih Praktis
-              </h2>
-
-              <p className="px-1 text-xs leading-relaxed text-gray-500">
-                Sistem pencatatan transaksi kasir, stok bahan, dan rekapan omzet
-                harian ramah pemilik usaha kecil & menengah.
-              </p>
-
-              {/* Static Frontend Stats */}
-              <div className="mt-5 grid grid-cols-2 gap-2.5 border-t border-gray-100 pt-4">
-                <div className="rounded-lg border border-gray-200 bg-gray-50 px-2 py-3">
-                  <span className="block text-lg font-bold text-gray-900">
-                    30+
-                  </span>
-
-                  <span className="text-[10px] text-gray-500">
-                    Pengguna Terdaftar
-                  </span>
-                </div>
-
-                <div className="rounded-lg border border-gray-200 bg-gray-50 px-2 py-3">
-                  <span className="block text-lg font-bold text-gray-900">
-                    100+
-                  </span>
-
-                  <span className="text-[10px] text-gray-500">
-                    Resep Tersedia
-                  </span>
-                </div>
-              </div>
-            </aside>
+            <RegisterPromo
+              gambar={momoMasak}
+              judul="Kelola Pesanan & Kasir Lebih Praktis"
+              deskripsi="Sistem pencatatan transaksi kasir, stok bahan, dan rekapan omzet harian ramah pemilik usaha kecil & menengah."
+              statistik={statistik}
+            />
           </div>
         </div>
       </main>

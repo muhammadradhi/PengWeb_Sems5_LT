@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import FormInput from "../Components/Molecules/FormInput";
+import Button from "../Components/Atoms/Button";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <div className="flex min-h-screen flex-col bg-gray-50 text-gray-800">
@@ -44,26 +48,15 @@ const LoginPage = () => {
             }}
           >
             {/* Email */}
-            <div className="mb-5">
-              <div className="mb-2 flex items-center justify-between">
-                <label
-                  htmlFor="email"
-                  className="text-xs font-bold tracking-wide text-gray-900"
-                >
-                  EMAIL BISNIS
-                </label>
-
-                <span className="text-[13px] text-gray-500">Wajib</span>
-              </div>
-
-              <input
-                type="email"
-                id="email"
-                placeholder="nama@warunganda.com"
-                required
-                className="w-full rounded-md border border-gray-300 bg-white px-3.5 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-blue-600"
-              />
-            </div>
+            <FormInput
+              label="EMAIL BISNIS"
+              hint="Wajib"
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="nama@warunganda.com"
+            />
 
             {/* Password */}
             <div className="mb-5">
@@ -88,6 +81,8 @@ const LoginPage = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   required
                   className="w-full rounded-md border border-gray-300 bg-white px-3.5 py-3 pr-20 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-blue-600"
@@ -104,12 +99,9 @@ const LoginPage = () => {
             </div>
 
             {/* Login Button */}
-            <button
-              type="submit"
-              className="mt-2 flex w-full items-center justify-center gap-2 rounded-md bg-[#1d70f5] px-3 py-3 text-[15px] font-semibold text-white transition hover:bg-[#1a5ecf]"
-            >
+            <Button type="submit" className="mt-2 w-full py-3 text-[15px]">
               Login <span aria-hidden="true">&rarr;</span>
-            </button>
+            </Button>
           </form>
 
           {/* Footer */}

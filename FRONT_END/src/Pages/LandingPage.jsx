@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
+import InfoAngka from "../Components/Molecules/InfoAngka";
 
 const LandingPage = () => {
+  const infoWarung = [
+    { angka: "30+", label: "Menu Tersedia" },
+    { angka: "100+", label: "Mitra Terdaftar" },
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
       <header className="flex h-16 items-center border-b border-gray-200 bg-white px-5 sm:px-12">
@@ -47,22 +53,10 @@ const LandingPage = () => {
             </Link>
           </div>
 
-          <div className="mt-7 flex items-center gap-5 border-t border-dashed border-gray-200 pt-5">
-            <div className="flex flex-col">
-              <span className="text-xl font-extrabold text-gray-900">30+</span>
-              <span className="text-[11px] font-medium text-gray-500">
-                Menu Tersedia
-              </span>
-            </div>
-
-            <div className="h-8 w-px bg-gray-200"></div>
-
-            <div className="flex flex-col">
-              <span className="text-xl font-extrabold text-gray-900">100+</span>
-              <span className="text-[11px] font-medium text-gray-500">
-                Mitra Terdaftar
-              </span>
-            </div>
+          <div className="mt-7 flex items-center divide-x divide-gray-200 border-t border-dashed border-gray-200 pt-5">
+            {infoWarung.map((item) => (
+              <InfoAngka key={item.label} angka={item.angka} label={item.label} />
+            ))}
           </div>
         </section>
       </main>

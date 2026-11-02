@@ -1,9 +1,20 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import StatCard from "../Components/Molecules/StatCard";
+import PesananList from "../Components/Organisms/PesananList";
 
-const DashboardPage = () => {
+const DashboardPage = ({ pesanan, onUbahStatus }) => {
   const [isOpen, setIsOpen] = useState(true);
   const location = useLocation();
+
+  let pendapatan = 0;
+  pesanan.forEach((item) => {
+    item.items.forEach((menu) => {
+      pendapatan = pendapatan + menu.harga * menu.jumlah;
+    });
+  });
+
+  const perluDiproses = pesanan.filter((item) => item.status !== "Selesai");
 
   const today = new Intl.DateTimeFormat("id-ID", {
     weekday: "long",
@@ -144,63 +155,23 @@ const DashboardPage = () => {
 
         {/* STATISTICS */}
         <section className="mb-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
-          {/* REVENUE */}
-          <article className="rounded-lg border border-gray-200 bg-white p-5 sm:p-6">
-            <div className="flex items-center justify-between gap-3">
-              <h2 className="text-sm font-semibold text-gray-600 sm:text-base">
-                Pendapatan Hari Ini
-              </h2>
+          <StatCard
+            title="Pendapatan Hari Ini"
+            icon="wallet-outline"
+            value={"Rp " + pendapatan.toLocaleString("id-ID")}
+            caption={pesanan.length + " transaksi hari ini"}
+            note="Terupdate saat penjualan"
+            noteIcon="information-circle-outline"
+          />
 
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 text-gray-600">
-                <ion-icon name="wallet-outline" className="text-2xl" />
-              </div>
-            </div>
-
-            <p className="mt-5 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Rp 0
-            </p>
-
-            <p className="mt-2 text-xs text-gray-500 sm:text-sm">
-              Belum ada transaksi hari ini
-            </p>
-
-            <div className="mt-5 flex items-center gap-2 rounded-md bg-[#f2f2f6] px-3 py-3 text-xs text-gray-600 sm:text-sm">
-              <ion-icon
-                name="information-circle-outline"
-                className="shrink-0 text-lg"
-              />
-              <span>Terupdate saat penjualan</span>
-            </div>
-          </article>
-
-          {/* TOTAL ORDERS */}
-          <article className="rounded-lg border border-gray-200 bg-white p-5 sm:p-6">
-            <div className="flex items-center justify-between gap-3">
-              <h2 className="text-sm font-semibold text-gray-600 sm:text-base">
-                Total Pesanan Hari Ini
-              </h2>
-
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 text-gray-600">
-                <ion-icon name="receipt-outline" className="text-2xl" />
-              </div>
-            </div>
-
-            <p className="mt-5 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              0 Pesanan
-            </p>
-
-            <p className="mt-2 text-xs text-gray-500 sm:text-sm">
-              Belum ada pesanan masuk
-            </p>
-
-            <div className="mt-5 flex items-center gap-2 rounded-md bg-[#f2f2f6] px-3 py-3 text-xs text-gray-600 sm:text-sm">
-              <ion-icon
-                name="checkmark-circle-outline"
-                className="shrink-0 text-lg"
-              />
-              <span>0 antrean dapur siap menerima pesanan</span>
-            </div>
-          </article>
+          <StatCard
+            title="Total Pesanan Hari Ini"
+            icon="receipt-outline"
+            value={pesanan.length + " Pesanan"}
+            caption={perluDiproses.length + " pesanan masih diproses"}
+            note={perluDiproses.length + " antrean dapur saat ini"}
+            noteIcon="checkmark-circle-outline"
+          />
         </section>
 
         {/* ORDERS TO PROCESS */}
@@ -220,31 +191,13 @@ const DashboardPage = () => {
             </p>
           </div>
 
-          {/* EMPTY STATE */}
-          <div className="flex min-h-[290px] flex-col items-center justify-center rounded-lg border border-gray-200 px-5 py-10 text-center sm:px-10">
-            <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-[#2186ff] text-white">
-              <ion-icon name="restaurant-outline" className="text-3xl" />
-            </div>
-
-            <h3 className="text-base font-bold text-gray-900 sm:text-lg">
-              Tidak Ada Pesanan yang Perlu Diproses
-            </h3>
-
-            <p className="mt-2 max-w-[390px] text-sm leading-relaxed text-gray-500">
-              Semua pesanan sudah ditangani atau belum ada pesanan baru yang
-              masuk. Warung siap menerima pesanan berikutnya.
-            </p>
-
-            <div className="mt-4 flex max-w-full items-center justify-center gap-2 rounded-lg bg-[#f2f2f6] px-3 py-2 text-xs text-gray-600 sm:px-4 sm:text-sm">
-              <ion-icon
-                name="notifications-outline"
-                className="shrink-0 text-base"
-              />
-              <span>
-                Notifikasi suara berbunyi otomatis saat ada pesanan baru
-              </span>
-            </div>
-          </div>
+          <PesananList
+            pesanan={perluDiproses}
+            teksKosong="Tidak Ada Pesanan yang Perlu Diproses"
+            idDipilih=""
+            onPilih={() => {}}
+            onAksi={onUbahStatus}
+          />
         </section>
       </main>
     </div>

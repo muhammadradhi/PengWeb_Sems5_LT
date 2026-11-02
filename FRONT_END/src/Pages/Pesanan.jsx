@@ -1,8 +1,14 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import "ionicons";
-const Pesanan = () => {
+import TabPesanan from "../Components/Molecules/TabPesanan";
+import PesananList from "../Components/Organisms/PesananList";
+import PesananDetail from "../Components/Organisms/PesananDetail";
+import statusPesanan from "../data/statusPesanan";
+
+const Pesanan = ({ pesanan, onUbahStatus }) => {
   const [isOpen] = useState(true);
+  const [tabAktif, setTabAktif] = useState("Baru");
+  const [idDipilih, setIdDipilih] = useState("");
   const location = useLocation();
 
   const navItems = [
@@ -13,6 +19,20 @@ const Pesanan = () => {
   ];
 
   const isActive = (path) => location.pathname === path;
+
+  const daftarTab = ["Baru", "Diproses", "Siap", "Selesai"];
+
+  const pesananTab = pesanan.filter((item) => item.status === tabAktif);
+
+  let pesananDipilih = pesananTab.find((item) => item.id === idDipilih);
+  if (!pesananDipilih) {
+    pesananDipilih = pesananTab[0];
+  }
+
+  const gantiTab = (tab) => {
+    setTabAktif(tab);
+    setIdDipilih("");
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans text-slate-900">
@@ -76,37 +96,48 @@ const Pesanan = () => {
       </header>
 
       {/* MAIN CONTENT */}
-      <main className="mx-auto w-full max-w-[1232px] px-4 pb-10 pt-8 sm:px-6 sm:pt-10 lg:px-0">
-        {/* PAGE HEADING */}
-        <section className="mb-5">
-          <span className="inline-flex items-center gap-1 rounded-md bg-gray-200 px-2.5 py-1 text-xs font-semibold text-slate-700">
-            <span className="text-[10px]">●</span>
-            MANAJEMEN ANTRIAN DAPUR
-          </span>
-
-          <h1 className="mt-2 text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
-            Daftar Pesanan Masuk
+      <main className="mx-auto w-full max-w-[1232px] px-4 pb-12 pt-8 sm:px-6 sm:pt-10">
+        <section className="mb-8">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            Pesanan
           </h1>
-
-          <p className="mt-1 text-sm leading-6 text-slate-500 sm:text-base">
-            Pantau proses masak dan ubah status pesanan secara real-time.
+          <p className="mt-2 text-base text-gray-600">
+            Kelola pesanan yang masuk dan proses pesanan pelanggan dengan tertib dan cepat.
           </p>
         </section>
 
-        {/* EMPTY STATE */}
-        <section className="flex min-h-[280px] flex-col items-center justify-center rounded-2xl border border-gray-200 bg-white px-5 py-12 text-center">
-          <div className="mb-5 flex h-[58px] w-[58px] items-center justify-center rounded-xl bg-blue-600 text-white">
-            <ion-icon name="restaurant" className="text-[28px]" />
-          </div>
+        <div className="mb-8 flex gap-4 overflow-x-auto border-b border-gray-200">
+          {daftarTab.map((tab) => (
+            <TabPesanan
+              key={tab}
+              label={statusPesanan[tab].tab}
+              jumlah={pesanan.filter((item) => item.status === tab).length}
+              aktif={tab === tabAktif}
+              onClick={() => gantiTab(tab)}
+            />
+          ))}
+        </div>
 
-          <h2 className="text-base font-bold text-slate-900 sm:text-lg">
-            Belum Ada Pesanan Masuk
-          </h2>
+        <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[1fr_420px]">
+          <section>
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+              <h2 className="text-sm font-semibold tracking-wider text-gray-700">
+                DAFTAR {statusPesanan[tabAktif].tab.toUpperCase()}
+              </h2>
+              <p className="text-xs text-gray-600">Klik kartu untuk meninjau rincian</p>
+            </div>
 
-          <p className="mt-2 max-w-md text-sm leading-[22px] text-slate-500 sm:text-base">
-            Tambah produk langsung dari Menu.
-          </p>
-        </section>
+            <PesananList
+              pesanan={pesananTab}
+              teksKosong="Belum ada data Pesanan"
+              idDipilih={pesananDipilih ? pesananDipilih.id : ""}
+              onPilih={setIdDipilih}
+              onAksi={onUbahStatus}
+            />
+          </section>
+
+          <PesananDetail pesanan={pesananDipilih} onAksi={onUbahStatus} />
+        </div>
       </main>
     </div>
   );
