@@ -5,6 +5,7 @@ import LandingPage from "./Pages/LandingPage";
 import LoginPage from "./Pages/LoginPage";
 import RegisterPage from "./Pages/RegisterPage";
 import Dashboard from "./Pages/DashboardPage";
+import Pesanan from "./Pages/Pesanan";
 import daftarPesanan from "./data/pesananData";
 
 function App() {
@@ -46,6 +47,12 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/dashboard" element={<Dashboard pesanan={pesanan} onUbahStatus={ubahStatusPesanan} />} />
+        <Route
+          path="/pesanan"
+          element={
+            <Pesanan pesanan={pesanan} onUbahStatus={ubahStatusPesanan} />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
