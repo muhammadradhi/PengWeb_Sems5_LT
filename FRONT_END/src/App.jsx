@@ -1,9 +1,13 @@
-import { BrowserRouter, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import LandingPage from "./Pages/LandingPage";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>{/* Route halaman akan ditambahkan di push berikutnya */}</Routes>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+      </Routes>
     </BrowserRouter>
   );
 }
