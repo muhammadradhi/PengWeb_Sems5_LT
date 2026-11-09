@@ -6,10 +6,21 @@ import LoginPage from "./Pages/LoginPage";
 import RegisterPage from "./Pages/RegisterPage";
 import Dashboard from "./Pages/DashboardPage";
 import Pesanan from "./Pages/Pesanan";
+import Menu from "./Pages/Menu";
+import daftarMenu from "./data/menuData";
 import daftarPesanan from "./data/pesananData";
 
 function App() {
+  const [menu, setMenu] = useState(daftarMenu);
   const [pesanan, setPesanan] = useState(daftarPesanan);
+
+  const tambahMenu = (menuBaru) => {
+    setMenu([...menu, menuBaru]);
+  };
+
+  const ubahMenu = (menuDiubah) => {
+    setMenu(menu.map((item) => (item.id === menuDiubah.id ? menuDiubah : item)));
+  };
 
   const ubahStatusPesanan = (id) => {
     const statusBerikutnya = {
@@ -51,6 +62,12 @@ function App() {
           path="/pesanan"
           element={
             <Pesanan pesanan={pesanan} onUbahStatus={ubahStatusPesanan} />
+          }
+        />
+        <Route
+          path="/menu"
+          element={
+            <Menu menu={menu} onTambahMenu={tambahMenu} onUbahMenu={ubahMenu} />
           }
         />
       </Routes>
