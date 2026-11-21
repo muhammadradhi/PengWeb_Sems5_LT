@@ -7,6 +7,7 @@ import RegisterPage from "./Pages/RegisterPage";
 import Dashboard from "./Pages/DashboardPage";
 import Pesanan from "./Pages/Pesanan";
 import Menu from "./Pages/Menu";
+import Riwayat from "./Pages/Riwayat";
 import daftarMenu from "./data/menuData";
 import daftarPesanan from "./data/pesananData";
 
@@ -70,6 +71,7 @@ function App() {
             <Menu menu={menu} onTambahMenu={tambahMenu} onUbahMenu={ubahMenu} />
           }
         />
+        <Route path="/riwayat-transaksi" element={<Riwayat pesanan={pesanan} />} />
       </Routes>
     </BrowserRouter>
   );
