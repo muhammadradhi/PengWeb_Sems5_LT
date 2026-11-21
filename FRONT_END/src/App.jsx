@@ -14,6 +14,7 @@ import daftarPesanan from "./data/pesananData";
 function App() {
   const [menu, setMenu] = useState(daftarMenu);
   const [pesanan, setPesanan] = useState(daftarPesanan);
+  const [isOpen, setIsOpen] = useState(true);
 
   const tambahMenu = (menuBaru) => {
     setMenu([...menu, menuBaru]);
@@ -58,20 +59,20 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/dashboard" element={<Dashboard pesanan={pesanan} onUbahStatus={ubahStatusPesanan} />} />
+        <Route path="/dashboard" element={<Dashboard pesanan={pesanan} onUbahStatus={ubahStatusPesanan} isOpen={isOpen} setIsOpen={setIsOpen} />} />
         <Route
           path="/pesanan"
           element={
-            <Pesanan pesanan={pesanan} onUbahStatus={ubahStatusPesanan} />
+            <Pesanan pesanan={pesanan} onUbahStatus={ubahStatusPesanan} isOpen={isOpen} />
           }
         />
         <Route
           path="/menu"
           element={
-            <Menu menu={menu} onTambahMenu={tambahMenu} onUbahMenu={ubahMenu} />
+            <Menu menu={menu} onTambahMenu={tambahMenu} onUbahMenu={ubahMenu} isOpen={isOpen} />
           }
         />
-        <Route path="/riwayat-transaksi" element={<Riwayat pesanan={pesanan} />} />
+        <Route path="/riwayat-transaksi" element={<Riwayat pesanan={pesanan} isOpen={isOpen} />} />
       </Routes>
     </BrowserRouter>
   );

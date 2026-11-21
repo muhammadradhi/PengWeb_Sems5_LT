@@ -42,7 +42,6 @@ const RegisterPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 pb-10 text-gray-800">
-      {/* Navbar */}
       <header className="flex h-16 items-center border-b border-gray-200 bg-white px-5 sm:px-12">
         <Link to="/" className="flex items-center gap-2.5">
           <span className="text-xl font-bold tracking-tight text-[#111111]">
@@ -57,11 +56,9 @@ const RegisterPage = () => {
         </Link>
       </header>
 
-      {/* Main Container */}
       <main className="flex justify-center px-4 py-8 sm:px-6">
         <div className="w-full max-w-6xl rounded-xl border border-gray-200 bg-white p-5 sm:p-8">
           <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1fr_340px]">
-            {/* Register Form */}
             <section>
               <div className="mb-7">
                 <span className="mb-3 inline-block rounded bg-gray-100 px-2.5 py-1 text-[10px] font-bold tracking-wide text-gray-600 sm:text-[11px]">
@@ -79,7 +76,6 @@ const RegisterPage = () => {
               </div>
 
               <form onSubmit={handleSubmit}>
-                {/* Informasi Pemilik */}
                 <fieldset className="mb-6">
                   <legend className="mb-4 w-full border-b border-gray-100 pb-3 text-xs font-bold tracking-wide text-gray-900">
                     <span className="mr-2">♙</span>
@@ -105,7 +101,6 @@ const RegisterPage = () => {
                   />
                 </fieldset>
 
-                {/* Detail Bisnis */}
                 <fieldset className="mb-6">
                   <legend className="mb-4 w-full border-b border-gray-100 pb-3 text-xs font-bold tracking-wide text-gray-900">
                     <span className="mr-2">⌂</span>
@@ -183,7 +178,6 @@ const RegisterPage = () => {
                   </div>
                 </fieldset>
 
-                {/* Keamanan Akun */}
                 <fieldset className="mb-6">
                   <legend className="mb-4 w-full border-b border-gray-100 pb-3 text-xs font-bold tracking-wide text-gray-900">
                     <span className="mr-2">♙</span>
@@ -214,13 +208,11 @@ const RegisterPage = () => {
                   </p>
                 </fieldset>
 
-                {/* Terms */}
                 <p className="my-5 text-xs leading-relaxed text-gray-500">
                   Dengan mendaftar, Anda menyetujui Ketentuan Layanan Kasir dan
                   Kebijakan Privasi data finansial UMKM Warung.
                 </p>
 
-                {/* Submit */}
                 <Button type="submit" className="w-full py-3 text-[15px]">
                   Daftar Akun & Bisnis Baru <span>→</span>
                 </Button>

@@ -11,7 +11,6 @@ const LoginPage = () => {
 
   return (
     <div className="flex min-h-screen flex-col bg-gray-50 text-gray-800">
-      {/* Navbar */}
       <header className="flex h-16 items-center border-b border-gray-200 bg-white px-5 sm:px-12">
         <Link to="/" className="flex items-center gap-2.5">
           <span className="text-xl font-bold tracking-tight text-[#111111]">
@@ -26,10 +25,8 @@ const LoginPage = () => {
         </Link>
       </header>
 
-      {/* Login Container */}
       <main className="flex flex-1 items-center justify-center px-5 py-10">
         <div className="w-full max-w-[470px] rounded-xl border border-gray-200 bg-white p-5 shadow-sm sm:p-8 md:p-10">
-          {/* Header */}
           <div className="mb-8">
             <h1 className="mb-2 text-[22px] font-bold tracking-tight text-gray-900 sm:text-[26px]">
               Selamat datang kembali.
@@ -40,14 +37,12 @@ const LoginPage = () => {
             </p>
           </div>
 
-          {/* Form */}
           <form
             onSubmit={(e) => {
               e.preventDefault();
               navigate("/dashboard");
             }}
           >
-            {/* Email */}
             <FormInput
               label="EMAIL BISNIS"
               hint="Wajib"
@@ -58,7 +53,6 @@ const LoginPage = () => {
               placeholder="nama@warunganda.com"
             />
 
-            {/* Password */}
             <div className="mb-5">
               <div className="mb-2 flex items-center justify-between">
                 <label
@@ -98,13 +92,11 @@ const LoginPage = () => {
               </div>
             </div>
 
-            {/* Login Button */}
             <Button type="submit" className="mt-2 w-full py-3 text-[15px]">
               Login <span aria-hidden="true">&rarr;</span>
             </Button>
           </form>
 
-          {/* Footer */}
           <div className="mt-8 border-t border-gray-100 pt-6 text-center">
             <p className="text-sm text-gray-700">
               Belum punya akun?{" "}

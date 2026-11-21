@@ -5,8 +5,7 @@ import PesananList from "../Components/Organisms/PesananList";
 import PesananDetail from "../Components/Organisms/PesananDetail";
 import statusPesanan from "../data/statusPesanan";
 
-const Pesanan = ({ pesanan, onUbahStatus }) => {
-  const [isOpen] = useState(true);
+const Pesanan = ({ pesanan, onUbahStatus, isOpen }) => {
   const [tabAktif, setTabAktif] = useState("Baru");
   const [idDipilih, setIdDipilih] = useState("");
   const location = useLocation();
@@ -36,17 +35,14 @@ const Pesanan = ({ pesanan, onUbahStatus }) => {
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans text-slate-900">
-      {/* NAVBAR */}
       <header className="sticky top-0 z-50 border-b border-gray-200 bg-white">
         <div className="flex min-h-16 flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 sm:px-12">
-          {/* BRAND */}
           <Link to="/dashboard" className="shrink-0">
             <span className="text-2xl font-semibold tracking-tight text-[#111111]">
               Warung
             </span>
           </Link>
 
-          {/* NAVIGATION */}
           <nav className="order-3 flex w-full items-center gap-6 overflow-x-auto sm:order-none sm:w-auto sm:flex-1 sm:justify-center sm:gap-7">
             {navItems.map((item) => (
               <Link
@@ -63,7 +59,6 @@ const Pesanan = ({ pesanan, onUbahStatus }) => {
             ))}
           </nav>
 
-          {/* STORE PROFILE */}
           <div className="flex shrink-0 items-center gap-3">
             <div className="hidden text-right sm:block">
               <p className="text-sm font-semibold text-gray-800">
@@ -95,7 +90,6 @@ const Pesanan = ({ pesanan, onUbahStatus }) => {
         </div>
       </header>
 
-      {/* MAIN CONTENT */}
       <main className="mx-auto w-full max-w-[1232px] px-4 pb-12 pt-8 sm:px-6 sm:pt-10">
         <section className="mb-8">
           <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">

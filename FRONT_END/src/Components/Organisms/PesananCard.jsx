@@ -37,7 +37,7 @@ const PesananCard = ({
     >
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-100 pb-4">
         <div className="flex flex-wrap items-center gap-3">
-          <h3 className="font-mono text-xl font-bold text-gray-900">#{id}</h3>
+          <h3 className="text-xl font-bold text-gray-900">#{id}</h3>
           <span className="text-sm text-gray-500">• {waktuMasuk} WIB</span>
 
           {metodePembayaran === "QRIS" ? (
@@ -60,7 +60,7 @@ const PesananCard = ({
 
         <div className="text-right">
           <p className="text-xs text-gray-500">Total Tagihan</p>
-          <p className="text-2xl font-semibold text-success">
+          <p className="text-2xl font-semibold text-gray-900">
             Rp {total.toLocaleString("id-ID")}
           </p>
         </div>
@@ -68,13 +68,13 @@ const PesananCard = ({
 
       <div className="flex items-center justify-between gap-3 pt-4">
         {aktif ? (
-          <p className="text-sm font-semibold text-success">Sedang Ditinjau →</p>
+          <p className="text-sm font-semibold text-gray-900">Sedang Ditinjau →</p>
         ) : (
           <p className="text-xs font-semibold text-gray-600">Klik untuk melihat detail</p>
         )}
 
         {status === "Selesai" ? (
-          <p className="text-sm text-success">Selesai {waktuSelesai} WIB</p>
+          <p className="text-sm text-gray-900">Selesai {waktuSelesai} WIB</p>
         ) : (
           <Button
             onClick={(e) => {
