@@ -37,8 +37,6 @@ const hitungSelisihHari = (isoA, isoB) => {
   return Math.round((new Date(isoA) - new Date(isoB)) / msPerHari);
 };
 
-// Data pesanan hanya menyimpan jam (waktuMasuk/waktuSelesai), tanpa tanggal.
-// Semua pesanan pada data frontend ini adalah pesanan hari ini.
 const tanggalHariIniISO = () => {
   const sekarang = new Date();
   const bulan = String(sekarang.getMonth() + 1).padStart(2, "0");
@@ -178,7 +176,7 @@ const RiwayatTransaksi = ({ pesanan = daftarPesanan, onLihatDetail, onCetak, isO
                 to={item.path}
                 className={`relative shrink-0 py-5 text-sm transition-colors ${
                   isActive(item.path)
-                    ? "font-semibold text-[#303630] after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-[#536258]"
+                    ? "font-semibold text-black after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-[#536258]"
                     : "font-medium text-gray-500 hover:text-gray-900"
                 }`}
               >
