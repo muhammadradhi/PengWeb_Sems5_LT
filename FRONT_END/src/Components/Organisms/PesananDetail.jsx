@@ -43,7 +43,7 @@ const PesananDetail = ({ pesanan, onAksi }) => {
       <div className="mt-6 rounded-lg bg-[#f2f2f6] p-5">
         <div className="flex justify-between py-2 text-sm">
           <span className="text-gray-600">Nomor Tiket:</span>
-          <span className="font-mono text-lg font-bold text-success">#{pesanan.id}</span>
+          <span className="text-lg font-bold text-gray-900">#{pesanan.id}</span>
         </div>
         <div className="flex justify-between py-2 text-sm">
           <span className="text-gray-600">Nama Pemesan:</span>
@@ -56,7 +56,7 @@ const PesananDetail = ({ pesanan, onAksi }) => {
         {pesanan.status === "Selesai" && (
           <div className="flex justify-between py-2 text-sm">
             <span className="text-gray-600">Diambil Pelanggan:</span>
-            <span className="text-success">{pesanan.waktuSelesai} WIB</span>
+            <span className="text-gray-900">{pesanan.waktuSelesai} WIB</span>
           </div>
         )}
 
@@ -116,7 +116,7 @@ const PesananDetail = ({ pesanan, onAksi }) => {
         </div>
         <div className="mt-4 flex items-center justify-between border-b border-gray-200 pb-5">
           <span className="text-xl font-semibold text-gray-900">Total Pembayaran</span>
-          <span className="text-3xl font-bold text-success">
+          <span className="text-3xl font-bold text-gray-900">
             Rp {subtotal.toLocaleString("id-ID")}
           </span>
         </div>

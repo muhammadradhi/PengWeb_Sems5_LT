@@ -58,10 +58,10 @@ const MenuCard = ({ nama, kategori, harga, deskripsi, stok, stokAwal, onEdit }) 
           )}
         </div>
 
-        <h3 className="font-serif text-xl font-bold text-gray-900">{nama}</h3>
+        <h3 className="text-xl font-bold text-gray-900">{nama}</h3>
 
         <p className="mt-1">
-          <span className={`font-serif text-lg font-bold ${warnaHarga}`}>
+          <span className={`text-lg font-bold ${warnaHarga}`}>
             Rp {harga.toLocaleString("id-ID")}
           </span>
           <span className="text-xs text-gray-500"> / porsi</span>
@@ -79,7 +79,7 @@ const MenuCard = ({ nama, kategori, harga, deskripsi, stok, stokAwal, onEdit }) 
 
       <div className="flex items-center justify-between gap-8">
         <div className="sm:text-right">
-          <p className={`font-serif text-2xl font-bold sm:text-3xl ${warnaPorsi}`}>
+          <p className={`text-2xl font-bold sm:text-3xl ${warnaPorsi}`}>
             {stok} Porsi Tersisa
           </p>
           <p className="mt-1 text-xs text-gray-500">

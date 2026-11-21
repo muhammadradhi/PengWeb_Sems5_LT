@@ -3,7 +3,7 @@ const MenuStatCard = ({ title, value, caption, icon, warnaAngka }) => {
     <article className="flex items-center justify-between gap-4 rounded-lg border border-gray-200 bg-white p-6">
       <div>
         <h2 className="text-sm text-gray-700">{title}</h2>
-        <p className={`mt-2 font-serif text-2xl font-bold ${warnaAngka}`}>
+        <p className={`mt-2 text-2xl font-bold ${warnaAngka}`}>
           {value}
         </p>
         <p className="mt-2 text-xs text-gray-500">{caption}</p>
