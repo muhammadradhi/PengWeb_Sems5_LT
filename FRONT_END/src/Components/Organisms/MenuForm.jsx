@@ -59,7 +59,7 @@ const MenuForm = ({ menuAwal, onSimpan, onClose }) => {
         className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-xl border border-gray-200 bg-white p-6"
       >
         <div className="mb-6 flex items-center justify-between border-b border-gray-100 pb-4">
-          <h2 className="font-serif text-2xl font-bold text-gray-900">
+          <h2 className="text-2xl font-bold text-gray-900">
             {isEdit ? "Edit Menu" : "Tambah Menu"}
           </h2>
 

@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import StatCard from "../Components/Molecules/StatCard";
 import PesananList from "../Components/Organisms/PesananList";
 
-const DashboardPage = ({ pesanan, onUbahStatus }) => {
-  const [isOpen, setIsOpen] = useState(true);
+const DashboardPage = ({ pesanan, onUbahStatus, isOpen, setIsOpen }) => {
   const location = useLocation();
 
   let pendapatan = 0;
@@ -34,17 +32,14 @@ const DashboardPage = ({ pesanan, onUbahStatus }) => {
 
   return (
     <div className="min-h-screen bg-white text-[#20211f]">
-      {/* NAVBAR */}
       <header className="sticky top-0 z-50 border-b border-gray-200 bg-white">
         <div className="flex min-h-16 flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 sm:px-12">
-          {/* BRAND */}
           <Link to="/dashboard" className="shrink-0">
             <span className="text-2xl font-semibold tracking-tight text-[#111111]">
               Warung
             </span>
           </Link>
 
-          {/* NAVIGATION */}
           <nav className="order-3 flex w-full items-center gap-6 overflow-x-auto sm:order-none sm:w-auto sm:flex-1 sm:justify-center sm:gap-7">
             {navItems.map((item) => (
               <Link
@@ -61,7 +56,6 @@ const DashboardPage = ({ pesanan, onUbahStatus }) => {
             ))}
           </nav>
 
-          {/* STORE PROFILE */}
           <div className="flex shrink-0 items-center gap-3">
             <div className="hidden text-right sm:block">
               <p className="text-sm font-semibold text-gray-800">
@@ -93,9 +87,7 @@ const DashboardPage = ({ pesanan, onUbahStatus }) => {
         </div>
       </header>
 
-      {/* MAIN CONTENT */}
       <main className="mx-auto w-full max-w-275 px-5 pb-12 pt-8 sm:px-12 sm:pt-10">
-        {/* WELCOME */}
         <section className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">
@@ -113,7 +105,6 @@ const DashboardPage = ({ pesanan, onUbahStatus }) => {
           </div>
         </section>
 
-        {/* OPERATIONAL STATUS */}
         <section className="mb-8 flex flex-col gap-5 rounded-lg border border-gray-200 bg-white p-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#2186ff] text-white">
@@ -153,7 +144,6 @@ const DashboardPage = ({ pesanan, onUbahStatus }) => {
           </button>
         </section>
 
-        {/* STATISTICS */}
         <section className="mb-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
           <StatCard
             title="Pendapatan Hari Ini"
@@ -174,7 +164,6 @@ const DashboardPage = ({ pesanan, onUbahStatus }) => {
           />
         </section>
 
-        {/* ORDERS TO PROCESS */}
         <section>
           <div className="mb-5">
             <div className="mb-2 inline-flex items-center gap-2 rounded-sm bg-[#e9e9e2] px-2.5 py-1 text-[10px] font-bold tracking-wider text-[#28523b]">
