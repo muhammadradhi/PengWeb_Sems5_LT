@@ -103,6 +103,45 @@ const daftarPesanan = [
       { nama: "Es Jeruk Segar", jumlah: 1, harga: 9000, keterangan: "" },
     ],
   },
+  {
+    id: "ORD-097",
+    namaPelanggan: "Pak Hadi",
+    waktuMasuk: "09.30",
+    waktuSelesai: "09.48",
+    metodePembayaran: "Tunai",
+    status: "Baru",
+    catatan: "",
+    items: [
+      { nama: "Paket Nasi Ayam Geprek", jumlah: 3, harga: 22000, keterangan: "" },
+      { nama: "Es Jeruk Segar", jumlah: 1, harga: 9000, keterangan: "" },
+    ],
+  },
+  {
+    id: "ORD-098",
+    namaPelanggan: "Pak Hadi",
+    waktuMasuk: "09.30",
+    waktuSelesai: "09.48",
+    metodePembayaran: "Tunai",
+    status: "Baru",
+    catatan: "",
+    items: [
+      { nama: "Paket Nasi Ayam Geprek", jumlah: 3, harga: 22000, keterangan: "" },
+      { nama: "Es Jeruk Segar", jumlah: 1, harga: 9000, keterangan: "" },
+    ],
+  },
+  {
+    id: "ORD-099",
+    namaPelanggan: "Pak Hadi",
+    waktuMasuk: "09.30",
+    waktuSelesai: "09.48",
+    metodePembayaran: "Tunai",
+    status: "Baru",
+    catatan: "",
+    items: [
+      { nama: "Paket Nasi Ayam Geprek", jumlah: 3, harga: 22000, keterangan: "" },
+      { nama: "Es Jeruk Segar", jumlah: 1, harga: 9000, keterangan: "" },
+    ],
+  },
 ];
 
 export default daftarPesanan;

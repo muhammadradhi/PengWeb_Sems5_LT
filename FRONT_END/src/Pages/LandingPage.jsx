@@ -3,8 +3,8 @@ import InfoAngka from "../Components/Molecules/InfoAngka";
 
 const LandingPage = () => {
   const infoWarung = [
-    { angka: "30+", label: "Menu Tersedia" },
-    { angka: "100+", label: "Mitra Terdaftar" },
+    { angka: "300", label: "Menu Tersedia" },
+    { angka: "10", label: "Mitra Terdaftar" },
   ];
 
   return (
