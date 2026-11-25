@@ -1,0 +1,60 @@
+### Uji REST API Warung UMKM
+### Pakai ekstensi VS Code "REST Client" (klik "Send Request"), atau salin ke Postman/Thunder Client.
+
+@base = http://localhost:3000/menu
+
+### READ - semua menu
+GET {{base}}
+
+### CREATE - tambah menu
+POST {{base}}
+Content-Type: application/json
+
+{
+  "nama": "Soto Ayam",
+  "harga": 17000,
+  "stok": 12,
+  "kategori": "Makanan",
+  "deskripsi": "Soto bening khas Lamongan"
+}
+
+### READ - satu menu
+GET {{base}}/1
+
+### UPDATE - ubah sebagian field
+PATCH {{base}}/1
+Content-Type: application/json
+
+{
+  "harga": 19000
+}
+
+### UPDATE - kurangi stok 3 (pakai angka positif untuk menambah)
+PATCH {{base}}/1/stok
+Content-Type: application/json
+
+{
+  "jumlah": -3
+}
+
+### DELETE - hapus menu
+DELETE {{base}}/1
+
+### QUERY LANJUTAN (where) - filter kategori + cari nama
+GET {{base}}?kategori=Minuman&cari=es
+
+### QUERY LANJUTAN (where) - stok menipis (<= 5)
+GET {{base}}?stokMaks=5
+
+### QUERY LANJUTAN (count/groupBy/aggregate) - statistik
+GET {{base}}/statistik
+
+### VALIDASI - harus 400
+POST {{base}}
+Content-Type: application/json
+
+{
+  "nama": "",
+  "harga": -1,
+  "kategori": "Sepatu"
+}

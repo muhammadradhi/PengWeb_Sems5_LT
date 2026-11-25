@@ -7,11 +7,13 @@ import {
   ParseIntPipe,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { MenuService } from './menu.service';
 import { CreateMenuDto } from './dto/create-menu.dto';
 import { UpdateMenuDto } from './dto/update-menu.dto';
 import { UbahStokDto } from './dto/ubah-stok.dto';
+import { QueryMenuDto } from './dto/query-menu.dto';
 
 // Controller ini sama seperti versi Pekan 9 (array di memori).
 // Yang berubah di Pekan 10 hanya MenuService: sekarang memakai Prisma.
@@ -25,8 +27,14 @@ export class MenuController {
   }
 
   @Get()
-  findAll() {
-    return this.menuService.findAll();
+  findAll(@Query() query: QueryMenuDto) {
+    return this.menuService.findAll(query);
+  }
+
+  // Harus di atas ':id' supaya "statistik" tidak dianggap sebagai id.
+  @Get('statistik')
+  statistik() {
+    return this.menuService.statistik();
   }
 
   @Get(':id')

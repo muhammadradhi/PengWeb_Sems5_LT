@@ -3,9 +3,13 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateMenuDto } from './dto/create-menu.dto';
 import { UpdateMenuDto } from './dto/update-menu.dto';
+import { QueryMenuDto } from './dto/query-menu.dto';
+
+const BATAS_STOK_MENIPIS = 5;
 
 @Injectable()
 export class MenuService {
@@ -16,8 +20,14 @@ export class MenuService {
     return this.prisma.menu.create({ data: dto });
   }
 
-  findAll() {
-    return this.prisma.menu.findMany({ orderBy: { id: 'asc' } });
+  // Query lanjutan (where): filter kategori, cari nama, dan stok maksimal.
+  findAll(query: QueryMenuDto = {}) {
+    const where: Prisma.MenuWhereInput = {};
+    if (query.kategori) where.kategori = query.kategori;
+    if (query.cari) where.nama = { contains: query.cari, mode: 'insensitive' };
+    if (query.stokMaks !== undefined) where.stok = { lte: query.stokMaks };
+
+    return this.prisma.menu.findMany({ where, orderBy: { id: 'asc' } });
   }
 
   async findOne(id: number) {
@@ -51,5 +61,38 @@ export class MenuService {
   async remove(id: number) {
     await this.findOne(id);
     return this.prisma.menu.delete({ where: { id } });
+  }
+
+  // Query lanjutan (count, groupBy, aggregate): ringkasan untuk dashboard.
+  async statistik() {
+    const [totalMenu, stokHabis, stokMenipis, agregat, perKategori] =
+      await Promise.all([
+        this.prisma.menu.count(),
+        this.prisma.menu.count({ where: { stok: 0 } }),
+        this.prisma.menu.count({
+          where: { stok: { gt: 0, lte: BATAS_STOK_MENIPIS } },
+        }),
+        this.prisma.menu.aggregate({
+          _sum: { stok: true },
+          _avg: { harga: true },
+        }),
+        this.prisma.menu.groupBy({
+          by: ['kategori'],
+          _count: { _all: true },
+          orderBy: { kategori: 'asc' },
+        }),
+      ]);
+
+    return {
+      totalMenu,
+      totalStok: agregat._sum.stok ?? 0,
+      rataRataHarga: Math.round(agregat._avg.harga ?? 0),
+      stokHabis,
+      stokMenipis,
+      perKategori: perKategori.map((k) => ({
+        kategori: k.kategori,
+        jumlah: k._count._all,
+      })),
+    };
   }
 }
