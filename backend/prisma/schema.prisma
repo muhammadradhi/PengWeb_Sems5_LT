@@ -1,0 +1,27 @@
+// Prisma schema - Warung UMKM
+// Docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Entitas utama: menu / produk yang dijual warung.
+// Field-nya sama dengan form "Tambah Menu Baru" di Dashboard.html.
+model Menu {
+  id        Int      @id @default(autoincrement())
+  nama      String   @db.VarChar(100)
+  harga     Int // dalam Rupiah
+  stok      Int      @default(0)
+  kategori  String   @db.VarChar(30) // Makanan | Minuman | Camilan | Bahan Baku
+  deskripsi String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([kategori])
+  @@map("menu")
+}
