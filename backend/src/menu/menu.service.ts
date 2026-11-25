@@ -1,6 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateMenuDto } from './dto/create-menu.dto';
+import { UpdateMenuDto } from './dto/update-menu.dto';
 
 @Injectable()
 export class MenuService {
@@ -21,5 +26,30 @@ export class MenuService {
       throw new NotFoundException(`Menu dengan id ${id} tidak ditemukan`);
     }
     return menu;
+  }
+
+  async update(id: number, dto: UpdateMenuDto) {
+    await this.findOne(id);
+    return this.prisma.menu.update({ where: { id }, data: dto });
+  }
+
+  // Tambah/kurangi stok secara atomik; stok tidak boleh jadi minus.
+  async ubahStok(id: number, jumlah: number) {
+    const hasil = await this.prisma.menu.updateMany({
+      where: { id, stok: { gte: -jumlah } },
+      data: { stok: { increment: jumlah } },
+    });
+    if (hasil.count === 0) {
+      const menu = await this.findOne(id); // 404 kalau id tidak ada
+      throw new BadRequestException(
+        `Stok "${menu.nama}" tinggal ${menu.stok}, tidak bisa dikurangi ${-jumlah}`,
+      );
+    }
+    return this.findOne(id);
+  }
+
+  async remove(id: number) {
+    await this.findOne(id);
+    return this.prisma.menu.delete({ where: { id } });
   }
 }
